@@ -1,0 +1,228 @@
+{
+	"variables": [],
+	"info": {
+		"name": "API OpenData EMTMADRID",
+		"_postman_id": "75eb8216-d1ce-7a1a-c7e4-c4a72dc1c473",
+		"description": "http://mobilitylab.emtmadrid.es/portal/index.php/open-data-emt-madrid/",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "BUS",
+			"description": "Más info: http://opendata.emtmadrid.es/Servicios-web/BUS",
+			"item": [
+				{
+					"name": "GetRouteLines - JSON",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if(!environment.hasOwnProperty(\"token\")){\n    // Try to get token from ArcGIS Online (if token is not present)\n    // but needs to send the request twice (because it is asynchronous)\n    var username = environment[\"username\"],\n        password = environment[\"password\"],\n        referrerIp = environment[\"referrerIp\"];\n    \n    var form = new FormData();\n    form.append(\"f\", \"json\");\n    form.append(\"username\", username);\n    form.append(\"password\", password);\n    form.append(\"client\", \"referer\");\n    form.append(\"ip\", referrerIp);\n    form.append(\"referer\", \"arcgis.com\");\n    form.append(\"expiration\", \"21600\");\n    \n    var settings = {\n      \"async\": true,\n      \"crossDomain\": true,\n      \"url\": \"https://www.arcgis.com/sharing/rest/generateToken\",\n      \"method\": \"POST\",\n      \"processData\": false,\n      \"contentType\": false,\n      \"mimeType\": \"multipart/form-data\",\n      \"data\": form\n    }\n    \n    $.ajax(settings).done(function (response) {\n        console.log(response);\n        var jsonData = JSON.parse(response);\n        postman.setEnvironmentVariable(\"token\", jsonData.token);\n    \n    });\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://openbus.emtmadrid.es:9443/emt-proxy-server/last/bus/GetRouteLines.php",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)",
+								"description": ""
+							},
+							{
+								"key": "Content-type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "idClient",
+									"value": "{{idClient}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "passKey",
+									"value": "{{passKey}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "SelectDate",
+									"value": "15/06/2016",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "Lines",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": "Obtiene una lista de emplazamientos EMT coincidentes con una localización. Cada emplazamiento está compuesto por una lista de paradas EMT situadas dentro de un radio predefinido con todos sus atributos, así como las líneas EMT que pasan por cada parada de la lista."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GEO",
+			"description": "Más info: http://opendata.emtmadrid.es/Servicios-web/GEO",
+			"item": [
+				{
+					"name": "GetArriveStop - JSON",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if(!environment.hasOwnProperty(\"token\")){\n    // Try to get token from ArcGIS Online (if token is not present)\n    // but needs to send the request twice (because it is asynchronous)\n    var username = environment[\"username\"],\n        password = environment[\"password\"],\n        referrerIp = environment[\"referrerIp\"];\n    \n    var form = new FormData();\n    form.append(\"f\", \"json\");\n    form.append(\"username\", username);\n    form.append(\"password\", password);\n    form.append(\"client\", \"referer\");\n    form.append(\"ip\", referrerIp);\n    form.append(\"referer\", \"arcgis.com\");\n    form.append(\"expiration\", \"21600\");\n    \n    var settings = {\n      \"async\": true,\n      \"crossDomain\": true,\n      \"url\": \"https://www.arcgis.com/sharing/rest/generateToken\",\n      \"method\": \"POST\",\n      \"processData\": false,\n      \"contentType\": false,\n      \"mimeType\": \"multipart/form-data\",\n      \"data\": form\n    }\n    \n    $.ajax(settings).done(function (response) {\n        console.log(response);\n        var jsonData = JSON.parse(response);\n        postman.setEnvironmentVariable(\"token\", jsonData.token);\n    \n    });\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://openbus.emtmadrid.es:9443/emt-proxy-server/last/geo/GetArriveStop.php",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)",
+								"description": ""
+							},
+							{
+								"key": "Content-type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "idClient",
+									"value": "{{idClient}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "passKey",
+									"value": "{{passKey}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "idStop",
+									"value": "72",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": "Más info: Obtiene los datos de estimación de llegadas del autobús a una parada determinada"
+					},
+					"response": []
+				},
+				{
+					"name": "GetStreet - JSON",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if(!environment.hasOwnProperty(\"token\")){\n    // Try to get token from ArcGIS Online (if token is not present)\n    // but needs to send the request twice (because it is asynchronous)\n    var username = environment[\"username\"],\n        password = environment[\"password\"],\n        referrerIp = environment[\"referrerIp\"];\n    \n    var form = new FormData();\n    form.append(\"f\", \"json\");\n    form.append(\"username\", username);\n    form.append(\"password\", password);\n    form.append(\"client\", \"referer\");\n    form.append(\"ip\", referrerIp);\n    form.append(\"referer\", \"arcgis.com\");\n    form.append(\"expiration\", \"21600\");\n    \n    var settings = {\n      \"async\": true,\n      \"crossDomain\": true,\n      \"url\": \"https://www.arcgis.com/sharing/rest/generateToken\",\n      \"method\": \"POST\",\n      \"processData\": false,\n      \"contentType\": false,\n      \"mimeType\": \"multipart/form-data\",\n      \"data\": form\n    }\n    \n    $.ajax(settings).done(function (response) {\n        console.log(response);\n        var jsonData = JSON.parse(response);\n        postman.setEnvironmentVariable(\"token\", jsonData.token);\n    \n    });\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://openbus.emtmadrid.es:9443/emt-proxy-server/last/geo/GetStreet.php",
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)",
+								"description": ""
+							},
+							{
+								"key": "Content-type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "idClient",
+									"value": "{{idClient}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "passKey",
+									"value": "{{passKey}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "description",
+									"value": "Emilio Muñoz",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "streetNumber",
+									"value": "35",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "Radius",
+									"value": "500",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "Stops",
+									"value": "5",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "statistics",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "cultureInfo",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": "Obtiene una lista de emplazamientos EMT coincidentes con una localización. Cada emplazamiento está compuesto por una lista de paradas EMT situadas dentro de un radio predefinido con todos sus atributos, así como las líneas EMT que pasan por cada parada de la lista."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "INFOPARKING",
+			"description": "",
+			"item": []
+		},
+		{
+			"name": "MEDIA",
+			"description": "",
+			"item": []
+		}
+	]
+}
