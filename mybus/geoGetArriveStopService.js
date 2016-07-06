@@ -22,25 +22,29 @@ app.get('/stop/:idStop', function(req, res) {
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
     body = JSON.parse(body);
-    var elem = body.arrives[0];
-    columns = Object.keys(elem);
-    csv = columns.join(",");
-    csv += "\n"
-    body.arrives.forEach(function(item, i){
-      
-      for(var elem in item) {    
-      
-        if (item.hasOwnProperty(elem)) {
-          csv += item[elem];
-        }
-        if(i<columns.length){
-          csv += ",";
-        }
-      }
+    try{
+      var elem = body.arrives[0];
+      columns = Object.keys(elem);
+      csv = columns.join(",");
       csv += "\n"
-    });
-    
-    res.send(csv);
+      body.arrives.forEach(function(item, i){
+        
+        for(var elem in item) {    
+        
+          if (item.hasOwnProperty(elem)) {
+            csv += item[elem];
+          }
+          if(i<columns.length){
+            csv += ",";
+          }
+        }
+        csv += "\n"
+      });
+      
+      res.send(csv);
+    }catch(e){
+      res.send("No hay parada: "+req.params.idStop);
+    }
     
   });
 });
