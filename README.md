@@ -10,7 +10,7 @@ Este repositorio ha sido creado con el objetivo de recopilar recursos que ayuden
 
 Para poder ejecutar los scripts tan sólo es necesario:
 
-1. Crear un fichero `config.py` en el directorio raíz (usando [esta plantilla](https://github.com/esri-es/mobilitylab-emtmadrid/blob/master/config.py.sample) como base)<br>
+1. Crear un fichero `config.py` en el directorio raíz (usando [esta plantilla](config/config.py.sample) como base)<br>
 La `iDclient` y `passKey` puedes conseguirlas [registrándote aquí](http://opendata.emtmadrid.es/Formulario)
 
 2. Ejecutar `pip install -r requirements.txt` en la línea de comandos desde el directorio raíz
@@ -18,12 +18,8 @@ La `iDclient` y `passKey` puedes conseguirlas [registrándote aquí](http://open
 
   3.1. `python openbus-get-arrive-stop.py`
   3.2. `python connect-reative-box.py`
-  3.3. `myBus.py`
-  3.4. `send-msg-to-amqp.py	`
-
-## Colección de POSTMAN
-
-Para explorar la [API de OpenData de la EMT](http://opendata.emtmadrid.es/Servicios-web) hemos empezado a crear una [colección de POSTMAN](https://www.getpostman.com/) con algunas llamandas a los cuatros servicios disponibles: [Bus](http://opendata.emtmadrid.es/Servicios-web/BUS), [Geo](http://opendata.emtmadrid.es/Servicios-web/GEO), [Media](http://opendata.emtmadrid.es/Servicios-web/MEDIA) e [Inforparking](http://opendata.emtmadrid.es/Servicios-web/PARKING)
+  3.3. `python myBus.py`
+  3.4. `python send-msg-to-amqp.py	`
 
 # Más info
 
