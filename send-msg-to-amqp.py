@@ -22,7 +22,7 @@ try:
 
   channel.basic_publish(
     exchange = '',
-    routing_key = 'messages',
+    routing_key = 'layer',
     body = message,
     properties = pika.BasicProperties(
       delivery_mode = 2, 
