@@ -7,5 +7,5 @@ Los vehículos de EMT tienen un servicio Web que permite obtener multitud de dat
   - Coordenadas del vehículo, 
   - Tiempos de estimación de llegada a cada una de las paradas hasta el final del recorrido
   - Etc
-  - 
+
 Más info: [https://mobilitylabs.emtmadrid.es/portal/index.php/servicios-de-mybus/](https://mobilitylabs.emtmadrid.es/portal/index.php/servicios-de-mybus/)
