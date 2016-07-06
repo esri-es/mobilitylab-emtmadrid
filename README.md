@@ -15,11 +15,12 @@ La `iDclient` y `passKey` puedes conseguirlas [registrándote aquí](http://open
 
 2. Ejecutar `pip install -r requirements.txt` en la línea de comandos desde el directorio raíz (necesitas tener [pip](https://packaging.python.org/installing/) instalado)
 3. Ejecutar los scripts, por ejemplo:
-
-  3.1. `python openbus-get-arrive-stop.py`
-  3.2. `python connect-reative-box.py`
-  3.3. `python myBus.py`
-  3.4. `python send-msg-to-amqp.py	`
+```
+python openbus-get-arrive-stop.py
+python connect-reative-box.py
+python myBus.py
+python send-msg-to-amqp.py
+```
 
 # Más info
 
