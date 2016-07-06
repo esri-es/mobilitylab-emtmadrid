@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+import sys
+sys.path.insert(0, '../config/')
+
 import pika
 import json
 from public_config import *

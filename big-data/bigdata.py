@@ -1,3 +1,6 @@
+import sys
+sys.path.insert(0, '../config/')
+
 import httplib
 import requests
 

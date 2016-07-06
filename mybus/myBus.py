@@ -1,3 +1,6 @@
+import sys
+sys.path.insert(0, '../config/')
+
 import urllib
 import urllib2
 import json 

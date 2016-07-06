@@ -1,3 +1,6 @@
+import sys
+sys.path.insert(0, '../config/')
+
 import time
 from MeteorClient import MeteorClient
 
