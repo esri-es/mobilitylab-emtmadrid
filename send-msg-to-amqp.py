@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 import pika
 import json
-from config import *
+from public_config import *
 
 hostSend = 'amqp.emtmadrid.es'
 portSend = 5672
-credentSend = pika.PlainCredentials(idClient, passKey)
+credentSend = pika.PlainCredentials(idClientTest, passKeyTest)
 
 connection = pika.BlockingConnection(
   pika.ConnectionParameters(
@@ -26,7 +26,7 @@ try:
     body = message,
     properties = pika.BasicProperties(
       delivery_mode = 2, 
-      user_id = idClient
+      user_id = idClientTest
     )
   )
 
