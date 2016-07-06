@@ -10,16 +10,17 @@ Este repositorio ha sido creado con el objetivo de recopilar recursos que ayuden
 
 Para poder ejecutar los scripts tan sólo es necesario:
 
-1. Crear un fichero `config.py` en el directorio raíz (usando [esta plantilla](config/config.py.sample) como base)<br>
+1. Crear un fichero `config.py` en el directorio [config](config/) (usando [esta plantilla](config/config.py.sample) como base)<br>
 La `iDclient` y `passKey` puedes conseguirlas [registrándote aquí](http://opendata.emtmadrid.es/Formulario)
 
-2. Ejecutar `pip install -r requirements.txt` en la línea de comandos desde el directorio raíz
+2. Ejecutar `pip install -r requirements.txt` en la línea de comandos desde el directorio raíz (necesitas tener [pip](https://packaging.python.org/installing/) instalado)
 3. Ejecutar los scripts, por ejemplo:
-
-  3.1. `python openbus-get-arrive-stop.py`
-  3.2. `python connect-reative-box.py`
-  3.3. `python myBus.py`
-  3.4. `python send-msg-to-amqp.py	`
+```
+python openbus-get-arrive-stop.py
+python connect-reative-box.py
+python myBus.py
+python send-msg-to-amqp.py
+```
 
 # Más info
 
