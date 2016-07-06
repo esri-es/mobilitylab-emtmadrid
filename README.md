@@ -13,7 +13,7 @@ Para poder ejecutar los scripts tan sólo es necesario:
 1. Crear un fichero `config.py` en el directorio raíz (usando [esta plantilla](config/config.py.sample) como base)<br>
 La `iDclient` y `passKey` puedes conseguirlas [registrándote aquí](http://opendata.emtmadrid.es/Formulario)
 
-2. Ejecutar `pip install -r requirements.txt` en la línea de comandos desde el directorio raíz
+2. Ejecutar `pip install -r requirements.txt` en la línea de comandos desde el directorio raíz (necesitas tener [pip](https://packaging.python.org/installing/) instalado)
 3. Ejecutar los scripts, por ejemplo:
 
   3.1. `python openbus-get-arrive-stop.py`
