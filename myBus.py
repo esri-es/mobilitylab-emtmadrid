@@ -1,7 +1,7 @@
 import urllib
 import urllib2
 import json 
-from config import *
+from public_config import *
 
 stopFindBusTest = 72
 
@@ -25,6 +25,7 @@ results = response.read()
 resultJson = json.loads(results)
 
 if resultJson.has_key('arrives'):
+    
     resultJsonbus = resultJson['arrives']
     for results in resultJsonbus:
         #now, we are going to use this bus number for getting data from myBus system
