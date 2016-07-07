@@ -33,14 +33,15 @@ app.get('/stop/:idStop', function(req, res) {
         
           if (item.hasOwnProperty(elem)) {
             csv += item[elem];
+
           }
-          if(i<columns.length){
-            csv += ",";
-          }
+          csv += ",";
+          
         }
-        csv += "\n"
+        csv = csv.slice(0, -1);
+        csv += "\n";
       });
-      
+      console.log(csv);
       res.send(csv);
     }catch(e){
       res.send("No hay parada: "+req.params.idStop);
