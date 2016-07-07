@@ -1,17 +1,18 @@
+//Load libs
 var request = require("request"),
 		config = require("../config/config.json"),
 		fs = require('fs'),
     express = require('express'),
     app = express();
 
-
+//get current date
 var fullDate = new Date(),
     day = fullDate.getDate(),
     month = fullDate.getMonth(),
     month = month + 1 ,
     year = fullDate.getFullYear(),
     date = day + '/'+ month + '/' + year;
-
+//request params
 var options = { method: 'POST',
   url: 'https://openbus.emtmadrid.es:9443/emt-proxy-server/last/bus/GetRouteLines.php',
   headers: 
@@ -23,10 +24,10 @@ var options = { method: 'POST',
    { idClient: config.idClient,
      passKey: config.passKey,
      SelectDate: date } };
-
+//When have a get request on {OUR_SERVER}:4000/route-lines/{LINE_NUMBER}
 app.get('/route-lines/:busLine', function (req, res) {
  	options.form.Lines = req.params.busLine;
-
+ 	//Request to the EMT server
  	request(options, function (error, response, body) {
 	  if (error) throw new Error(error);
 
@@ -34,36 +35,31 @@ app.get('/route-lines/:busLine', function (req, res) {
 	  var resultRequest = body.resultDescription;
 	  console.log('resultado de la consulta: ' + resultRequest);
 	 	
+	 	//get and write CSV headers
 	 	var elem = body.resultValues[0],
         columns = Object.keys(elem);
-    
     csv = columns.join(",");
     csv += "\n";
 
-    body.resultValues.forEach(function(item, i){
-     
-      for(var elem in item) {    
-          csv += item[elem];
-          csv += ",";
-      }
-      csv += "\n";
-    });
-    
+    //go through each element of each item and add it to the CSV separated by commas 
+		for (j = 0; j < body.resultValues.length; j++) {
+		  var row = body.resultValues[j];
+		  
+		  for( var element in row) {
+		  	csv += row[element];  
+        csv += ",";
+    	}
+
+    	csv = csv.slice(0, -1);
+    	csv += "\n";
+		}
+    //then send CSV as the response (and print in the console)
     res.send(csv);
     console.log(csv);
-    // Writing file
-    // var aux = path.join(__dirname, './data/json/', "stop_" + process.argv[2]+".json")
-	  // console.log("aux=",aux)
-	  fs.writeFile('./data/busStops.csv', csv, function(err) {
-	      if(err) {
-	          return console.log(err);
-	      }
-
-	      console.log("The file was saved!");
-	  });
 	});
  });
 
+//set the server port
  app.listen(4000, function () {
    console.log('Example app listening on port 4000!');
  });
