@@ -78,6 +78,9 @@ Para el ejemplo demostrativo vamos a trabajar con `Node.js`.Vamos a obtener las 
 	});
 	```
 6. Tratamos los datos obtenidos en `JSON` para crear el `CSV`
+
+	--
+
 	Recorremos cada elemento (parada de bus) y dentro de cada elemento cada item (propiedad de la parada) y las vamos ecribiendo en el `	  CSV` separados por `,`
 	```javascript
 	 	var elem = body.resultValues[0],
