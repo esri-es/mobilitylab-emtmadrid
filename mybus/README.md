@@ -23,8 +23,8 @@ Para el ejemplo demostrativo vamos a trabajar con `Node.js`.Vamos a obtener las 
 	var request = require("request"),
 			config = require("../config/config.json"),
 			fs = require('fs'),
-	    express = require('express'),
-	    app = express();
+			express = require('express'),
+			app = express();
 
 	``` 
 
@@ -57,13 +57,13 @@ Para el ejemplo demostrativo vamos a trabajar con `Node.js`.Vamos a obtener las 
 4. Levantamos el servidor y especificamos el puerto y la ruta a través de los cuales se podrá acceder mediante `{OUR_SERVER}:4000/route-lines/{LINE_NUMBER}` para que nos devuelva el CSV
 	```javascript
 	app.get('/route-lines/:busLine', function (req, res) {
-	 	options.form.Lines = req.params.busLine;
-	    res.send(csv);
+		options.form.Lines = req.params.busLine;
+		res.send(csv);
 	 });
 
 	 app.listen(4000, function () {
-	  
-	 });
+
+	});
 	```
 5. Lanzamos la petición `POST` obtenemos el `JSON`
 
@@ -81,23 +81,24 @@ Para el ejemplo demostrativo vamos a trabajar con `Node.js`.Vamos a obtener las 
 
 	* Recorremos cada elemento (parada de bus) y dentro de cada elemento cada item (propiedad de la parada) y las vamos ecribiendo en el `	  CSV` separados por `,`
 	```javascript
-	 	var elem = body.resultValues[0],
-	      columns = Object.keys(elem);
-	  csv = columns.join(",");
-	  csv += "\n";
+	var elem = body.resultValues[0],
+	  columns = Object.keys(elem);
+
+	csv = columns.join(",");
+	csv += "\n";
 
 	  
-		for (j = 0; j < body.resultValues.length; j++) {
-		  var row = body.resultValues[j];
-		  
-		  for( var element in row) {
-		  	csv += row[element];  
-	      csv += ",";
-	  	}
+	for (j = 0; j < body.resultValues.length; j++) {
+	  var row = body.resultValues[j];
+	  
+	  for( var element in row) {
+	  	csv += row[element];  
+      csv += ",";
+  	}
 
-	  	csv = csv.slice(0, -1);
-	  	csv += "\n";
-		}
+  	csv = csv.slice(0, -1);
+  	csv += "\n";
+	}
 	```	
 De esta manera creamos un script que al ejecutarlo desde la consola mediante el comando `node geoGetBusLineStopsExportCSV.js` levantamos un servicio al que poder hacerle consultas `HTTP`
 
