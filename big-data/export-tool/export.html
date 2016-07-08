@@ -1,0 +1,46 @@
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+</head>
+<body>
+<form action="http://localhost:3000/TRAFFICMAD/alarms" method="POST">
+  <p>
+    <label>http://localhost:3000/</label>
+    <input name="endpoint" type="text" value="TRAFFICMAD/alarms">
+  </p>
+  <p>
+    <label>Body</label>
+    <textarea name="body">{"keyid":"PMX333"}</textarea>
+  </p>
+  <input type="submit" value="Exportar">
+</form>
+
+<hr>
+<p>Response:</p>
+<div id="log"></div>
+<script>
+  $(document).ready(function(){
+    $("form").submit(function(e){
+      e.preventDefault();
+      console.log("hola");
+      $( "#log" ).html( "Loading");
+      
+      var request=$.ajax({
+        url: "http://localhost:3000/"+$("[name=\"endpoint\"]").val(),
+        method: "POST",
+        data: $('form').serialize(),
+        dataType: "html"
+      });
+
+      request.done(function( msg ) {
+        $( "#log" ).html( msg );
+      });
+       
+      request.fail(function( jqXHR, textStatus ) {
+        alert( "Request failed: " + textStatus );
+      });
+    });
+  });
+</script>
+</body>
+</html>
