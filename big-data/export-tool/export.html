@@ -1,39 +1,104 @@
 <html>
 <head>
+  <title>MobilityLabs - Big data export tool</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
+
+  <style>
+    #export{margin-top:1rem; padding:1rem;}
+  </style>
 </head>
 <body>
-<form action="http://localhost:3000/TRAFFICMAD/alarms" method="POST">
-  <p>
-    <label>http://localhost:3000/</label>
-    <input name="endpoint" type="text" value="TRAFFICMAD/alarms">
-  </p>
-  <p>
-    <label>Body</label>
-    <textarea name="body">{"keyid":"PMX333"}</textarea>
-  </p>
-  <input type="submit" value="Exportar">
-</form>
+<div class="container">
+  <h1>Big Data export tool</h1>
+  <form action="http://localhost:3000/TRAFFICMAD/alarms" method="POST">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+        
+          <label>Username: </label>
+          <input name="username" type="text" value="mobilitylabs.usertest" class="form-control">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Password: </label>
+          <input name="password" type="text" value="usertest" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>http://localhost:3000/</label>
+      <input name="endpoint" type="text" value="TRAFFICMAD/alarms" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Body</label>
+      <textarea name="body" class="form-control">{"keyid":"PMX333"}</textarea>
+    </div>
+    <input type="submit" value="Exportar" class="btn btn-primary btn-block">
+    <p class="bg-success text-center" id="export" style="display:none">Los datos han sido exportados con éxito: <a href="#">#</a></p>
+  </form>
 
-<hr>
-<p>Response:</p>
-<div id="log"></div>
+  <hr>
+  
+  <p>Response:</p>
+  <pre><code class="javascript" id="response"></code></pre>
+  
+  <p>Data <span id="nElems"></span>:</p>
+  <pre><code class="javascript" id="data"></code></pre>
+
+</div>
 <script>
+
+  var obj, response;
   $(document).ready(function(){
     $("form").submit(function(e){
       e.preventDefault();
-      console.log("hola");
-      $( "#log" ).html( "Loading");
+      $("#export").hide();
       
+      $( "#response" ).text( "Loading");
+      $( "#data" ).text( "Loading");
+      
+      var $endpoint = $("[name=\"endpoint\"]").val();
       var request=$.ajax({
-        url: "http://localhost:3000/"+$("[name=\"endpoint\"]").val(),
+        url: "http://localhost:3000/" + $endpoint,
         method: "POST",
         data: $('form').serialize(),
         dataType: "html"
       });
 
       request.done(function( msg ) {
-        $( "#log" ).html( msg );
+        response = JSON.parse(msg);
+        obj = eval(response.data);
+
+        obj.forEach(function(elem, i){
+          obj[i] = JSON.stringify(obj[i],null,'\t')
+        });
+        $("#nElems").text("("+obj.length+" elems)");
+        $( "#data" ).text("[\n"+obj.toString()+"\n]");
+
+        response.data = "<extraído por legibilidad>"
+        response = JSON.stringify(response,null,'\t')
+        $( "#response" ).text(response);
+        $('pre code').each(function(i, block) {
+          hljs.highlightBlock(block);
+        });
+
+        var $a = $("#export a");
+        var file = "data/" + $endpoint.replace("/",".")+".json";
+        $a.attr("href", file);
+        $a.text(file);
+        $("#export").show();
       });
        
       request.fail(function( jqXHR, textStatus ) {
@@ -41,6 +106,8 @@
       });
     });
   });
+
+  function ObjectId(id){return id;}
 </script>
 </body>
 </html>

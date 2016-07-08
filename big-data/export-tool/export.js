@@ -1,6 +1,6 @@
 var request = require("request"),
     https = require('https'),
-    config = require("../config/config.json"),
+    config = require("../../config/config.json"),
     express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
@@ -37,14 +37,8 @@ var options = {
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 app.post('/:collection/:data', function(req, res) {
-  options.path = "/DataProvider/api/dmz/getCollection/mobilitylabs.usertest/usertest/Layers/"+req.params.collection+"."+req.params.data+"/";
+  options.path = "/DataProvider/api/dmz/getCollection/"+req.body.username+"/"+req.body.password+"/Layers/"+req.params.collection+"."+req.params.data+"/";
   data=req.body.body;
-  console.log("req.body=",req.body.body);
-  console.log("options.path=",options.path);
-  //options.form.idStop = req.params.idStop;
-  //console.log("options=",options);
-  //res.send("hola");
-  //console.log("req.body=",req.body.body);
   
   var ajax = https.request(options, function (response) {
     var obj = "";  
@@ -58,11 +52,9 @@ app.post('/:collection/:data', function(req, res) {
       try{
         obj = JSON.parse(obj);
         data = eval(obj.data);
-        res.send(data);
+        res.send(obj);
 
         var aux = path.join(__dirname, './data/', req.params.collection + "."+req.params.data+".json")
-        //console.log("obj=",data)
-        console.log("aux=",aux)
         fs.writeFile(aux, JSON.stringify(data), function(err) {
             if(err) {
                 return console.log(err);
