@@ -35,24 +35,28 @@ app.get('/route-lines/:busLine', function (req, res) {
 	  var resultRequest = body.resultDescription;
 	  console.log('resultado de la consulta: ' + resultRequest);
 	 	
-	 	//get and write CSV headers
-	 	var elem = body.resultValues[0],
-        columns = Object.keys(elem);
-    csv = columns.join(",");
-    csv += "\n";
+	 	try{
+      //get and write CSV headers
+  	 	var elem = body.resultValues[0],
+          columns = Object.keys(elem);
+      csv = columns.join(",");
+      csv += "\n";
 
-    //go through each element of each item and add it to the CSV separated by commas 
-		for (j = 0; j < body.resultValues.length; j++) {
-		  var row = body.resultValues[j];
-		  
-		  for( var element in row) {
-		  	csv += row[element];  
-        csv += ",";
-    	}
+      //go through each element of each item and add it to the CSV separated by commas 
+  		for (j = 0; j < body.resultValues.length; j++) {
+  		  var row = body.resultValues[j];
+  		  
+  		  for( var element in row) {
+  		  	csv += row[element];  
+          csv += ",";
+      	}
 
-    	csv = csv.slice(0, -1);
-    	csv += "\n";
-		}
+      	csv = csv.slice(0, -1);
+      	csv += "\n";
+  		}
+    }catch(e){
+      csv = "No existe la línea "+req.params.busLine;
+    }
     //then send CSV as the response (and print in the console)
     res.send(csv);
     console.log(csv);
