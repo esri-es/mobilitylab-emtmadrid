@@ -20,7 +20,9 @@
 
   <link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/patterns.esri.com/files/calcite-web/1.0.0-beta.30/css/calcite-web.min.css">
   <script src="https://s3-us-west-1.amazonaws.com/patterns.esri.com/files/calcite-web/1.0.0-beta.30/js/calcite-web.min.js"></script>
-
+  <script>
+    window.onload = function () {calcite.init();};
+  </script>
 </head>
 
 <body>
@@ -34,9 +36,9 @@
     </div>
 
     <div class="column-24">
-    <h1 class="column-20">Hackathon - Video tutoriales</h1>
-    <div class="column-4">
-      <a class="js-modal-toggle btn leader-1 right" href="#" data-modal="foo">Dudas</a>
+    <h1 class="column-20 tablet-column-8">Hackathon - Video tutoriales</h1>
+    <div class="column-4 tablet-column-4">
+      <a class="js-modal-toggle btn leader-1 right tablet-leader-0" href="#" data-modal="foo">Dudas</a>
     </div>
     </div>
 
@@ -57,11 +59,11 @@
           
           <div class="grid-container">
             <div class="column-23">
-              <div class="column-11">
+              <div class="column-11 tablet-column-11">
                   <div id="intro-mobilitylabs" data-video-id="JSo_JT4K5TI"></div>
               </div>
             
-              <div class="column-12">
+              <div class="column-12 tablet-column-11">
                 <span>
                   <table class="table-striped table-blue video-index">
                     <thead>
@@ -130,11 +132,11 @@
         <article class="tab-section js-tab-section">
           <div class="grid-container">
             <div class="column-23">
-              <div class="column-11">
+              <div class="column-11 tablet-column-11">
                   <div id="intro-rabbitmq" data-video-id="JSo_JT4K5TI"></div>
               </div>
             
-              <div class="column-12">
+              <div class="column-12 tablet-column-11">
                 <span>
                   <table class="table-striped table-blue video-index">
                     <thead>
@@ -202,11 +204,11 @@
         <article class="tab-section js-tab-section">
           <div class="grid-container">
             <div class="column-23">
-              <div class="column-11">
+              <div class="column-11 tablet-column-11">
                   <div id="load-collection" data-video-id="Eq26C-fzhbo"></div>
               </div>
             
-              <div class="column-12">
+              <div class="column-12 tablet-column-11">
                 <span>
                   <table class="table-striped table-blue video-index">
                     <thead>
@@ -249,7 +251,7 @@
                         <td>Borrar datos de una colección</td>
                       </tr>
                       <tr>
-                        <td>12:18</td>
+                        <td>14:19</td>
                         <td>Cargar datos geolocalizados</td>
                       </tr>
                       <tr>
@@ -257,7 +259,7 @@
                         <td>Borrar datos de una colección (continuación)</td>
                       </tr>
                       <tr>
-                        <td>20:20</td>
+                        <td>20:19</td>
                         <td>Cargar datos geolocalizados (continuación)</td>
                       </tr>
                       <tr>
@@ -302,11 +304,11 @@
         <article class="tab-section js-tab-section">
           <div class="grid-container">
             <div class="column-23">
-              <div class="column-11">
+              <div class="column-11 tablet-column-11">
                   <div id="petition-mybus-stop" data-video-id="VtE-ixVnJo0"></div>
               </div>
             
-              <div class="column-12">
+              <div class="column-12 tablet-column-11">
                 <span>
                   <table class="table-striped table-blue video-index">
                     <thead>
@@ -370,11 +372,11 @@
         <article class="tab-section js-tab-section">
           <div class="grid-container">
             <div class="column-23">
-              <div class="column-11">
+              <div class="column-11 tablet-column-11">
                   <div id="intro-agol" data-video-id="BcXN-FGwC8Y"></div>
               </div>
             
-              <div class="column-12">
+              <div class="column-12 tablet-column-11">
                 <span>
                   <table class="table-striped table-blue video-index">
                     <thead>
@@ -570,8 +572,6 @@ thead tr > th:first-child{
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script>
     loadYoutubeVideo();
-
-    window.onload = function () {calcite.init();};
 
     $(document).ready(function(){
       $('.video-index tbody tr').click(function(){
