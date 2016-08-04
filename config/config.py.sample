@@ -1,4 +1,0 @@
-# Copy or rename this file to config.py and add your credentials.
-# You can get them here: http://opendata.emtmadrid.es/Formulario
-idClient = 'your client id'
-passKey  = 'your passKey'
