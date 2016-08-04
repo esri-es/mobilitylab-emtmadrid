@@ -3,7 +3,11 @@
 <head>
   <title>MobilityLabs: Video tutoriales</title>
   <meta charset="utf-8">
-
+  
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  
   <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
   </script>
@@ -23,7 +27,12 @@
       <img src="assets/images/sponsors.png" alt="sponsors" id="sponsors" class="right">
     </div>
 
-    <h1 id="responsive-columns" class="column-24">Video tutoriales</h1>
+    <div class="column-24">
+    <h1 class="column-20">Video tutoriales</h1>
+    <div class="column-4">
+      <a class="js-modal-toggle btn leader-1 right" href="#" data-modal="foo">Dudas</a>
+    </div>
+    </div>
 
     <div class="modifier-class trailer-2 js-tab-group column-24">
       <nav class="tab-nav">
@@ -90,7 +99,18 @@
                 <iframe class="slides" src="assets/files/Intro-MobilityLabs-v1.1.pdf"></iframe>
               </div>
               <div class="column-12">
-                <p>Esta fue la primera charla que dió Andrés Recio</p>
+                <p>
+                  En esta charla que dió <a href="https://es.linkedin.com/in/andres-recio-martin-11819b40">Andrés Recio</a>, responsable de aplicaciones de negocio en la EMT presenta la plataforma MobilityLabs explicándo la infraestructura puesta a disposición al público e introducciendo las colecciones ya disponibles.
+                </p>
+                <p>Materiales disponibles:</p>
+                <ul>
+                  <li>
+                    <a href="https://drive.google.com/folderview?id=0Bwbev5oZ3j7sQVg5NjhfMm9meGc&usp=sharing" target="_blank">Documentos utilizados durante el hackathon</a>
+                  </li>
+                  <li>
+                    <a href="assets/files/Intro-MobilityLabs-v1.1.pdf" target="_blank">Abrir las transparencias de esta charla en una pestaña nueva</a>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -152,7 +172,18 @@
                 <iframe class="slides" src="assets/files/Rabbit_intro.pdf"></iframe>
               </div>
               <div class="column-12">
-              hola
+                <p>
+                  En esta charla Iván Bernardo Rodríguez nos explica qué es RabbitMQ, cómo funciona y nos enseña cómo funciona un ejemplo básico de envío de mensajes.
+                </p>
+                <p>Materiales disponibles:</p>
+                <ul>
+                  <li>
+                    <a href="assets/files/Rabbit_intro.pdf" target="_blank">Abrir las transparencias de esta charla en una pestaña nueva</a>
+                  </li>
+                  <li>
+                    <a href="https://drive.google.com/folderview?id=0Bwbev5oZ3j7sQVg5NjhfMm9meGc&usp=sharing" target="_blank">Documentos utilizados durante el hackathon</a>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -165,6 +196,26 @@
     </div>
 
   </div>
+
+
+  <div class="js-modal modal-overlay modifier-class" data-modal="foo">
+  <div class="modal-content column-12" role="dialog" aria-labelledby="modal" role="dialog">
+    <a class="js-modal-toggle icon-ui-close icon-flush font-size-1 right" href="#" aria-label="close-modal" ></a>
+    <h3 class='trailer-half'>Dudas</h3>
+      <p>
+        Cualquier duda que tengas puedes plantearla en el foro de <a href="https://mobilitylabs.emtmadrid.es/portal/index.php/forums/forum/pregunta-discute-intercambia/">mobilitylabs</a>.
+      </p>
+
+      <p>
+        Si tienes cualquier duda sobre el funcionamiento de los scripts del <a href="https://github.com/esri-es/mobilitylab-emtmadrid">repositorio mobilitylab-emtmadrid de Esri</a>
+        no dudes en <a href="https://github.com/esri-es/mobilitylab-emtmadrid/issues">abrir un issue</a>.
+      </p>
+
+    <div class="text-right">
+        <button class="btn js-modal-toggle">Entendido</button>
+    </div>
+  </div>
+</div>
 
 <style type="text/css">
 .html5-video-player .video-stream{
