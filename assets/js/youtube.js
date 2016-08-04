@@ -13,7 +13,7 @@ function loadYoutubeVideo(videoId){
 }
 function onYouTubeIframeAPIReady() {
   //console.log('videoId',videoId);
-  var videos = ['intro-mobilitylabs','intro-rabbitmq'];
+  var videos = ['intro-mobilitylabs','intro-rabbitmq','petition-mybus-stop'];
   player = {};
 
   videos.forEach(function(elem, i){
