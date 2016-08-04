@@ -24,8 +24,6 @@ channel.tx_select()
 
 # We build a message to load data into the collection
 collectionName = 'MUSEOS.ubicaciones'
-with open('json-data/museos.geojson') as data_file:    
-  data = json.load(data_file)
 
 message = """
             {
@@ -34,7 +32,7 @@ message = """
                 "layerData": {
                   "_id": "PM1111",
                   "subsystem": "PUTDATA",
-                  "function": "DROP",
+                  "function": "INSERT",
                   "layer": {
                     "owner": "%s",
                     "type": "public",

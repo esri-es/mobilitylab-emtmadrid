@@ -81,26 +81,36 @@
 
       request.done(function( msg ) {
         response = JSON.parse(msg);
-        obj = eval(response.data);
+        if(response.code === "-1"){
+          var $res = JSON.stringify(response,null,'\t')
+          $( "#response" ).text($res);
+          $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+          });
+          $( "#data" ).text("");
+          $("#nElems").text("(0 elems)");
+        }else{
+          obj = eval(response.data);
 
-        obj.forEach(function(elem, i){
-          obj[i] = JSON.stringify(obj[i],null,'\t')
-        });
-        $("#nElems").text("("+obj.length+" elems)");
-        $( "#data" ).text("[\n"+obj.toString()+"\n]");
+          obj.forEach(function(elem, i){
+            obj[i] = JSON.stringify(obj[i],null,'\t')
+          });
+          $("#nElems").text("("+obj.length+" elems)");
+          $( "#data" ).text("[\n"+obj.toString()+"\n]");
 
-        response.data = "<extraído por legibilidad>"
-        response = JSON.stringify(response,null,'\t')
-        $( "#response" ).text(response);
-        $('pre code').each(function(i, block) {
-          hljs.highlightBlock(block);
-        });
+          response.data = "<extraído por legibilidad>"
+          response = JSON.stringify(response,null,'\t')
+          $( "#response" ).text(response);
+          $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+          });
 
-        var $a = $("#export a");
-        var file = "data/" + $endpoint.replace("/",".")+".json";
-        $a.attr("href", file);
-        $a.text(file);
-        $("#export").show();
+          var $a = $("#export a");
+          var file = "data/" + $endpoint.replace("/",".")+".json";
+          $a.attr("href", file);
+          $a.text(file);
+          $("#export").show();
+        }
       });
        
       request.fail(function( jqXHR, textStatus ) {

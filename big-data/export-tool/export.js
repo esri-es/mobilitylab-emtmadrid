@@ -66,6 +66,8 @@ app.post('/:collection/:data', function(req, res) {
       }catch(e){
         console.log("e=",e)
         console.log("obj=",obj)
+        
+        res.send(obj);
       }
     });
   });
@@ -74,6 +76,8 @@ app.post('/:collection/:data', function(req, res) {
   ajax.end();
   ajax.on('error', (e) => {
     console.error(e);
+    ajax.write(e);
+    ajax.end();
   });
 
 });
