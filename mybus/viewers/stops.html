@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>GetArriveStop: Visor de datos estático</title>
+    <meta name="description" content="Datos de MobilityLabs de la EMT de Madrid" />
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.14/esri/css/esri.css">
+    <style>
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+    </style>
+
+    <script src="http://js.arcgis.com/3.14/"></script>
+    <script>
+      var map, csv;
+      require([
+        "esri/map",
+        "esri/request",
+        "esri/layers/GraphicsLayer", 
+        "esri/geometry/Point",  
+        "esri/symbols/PictureMarkerSymbol", 
+        "esri/graphic", 
+        "esri/dijit/PopupTemplate",
+        "dojo/domReady!"
+      ], function(
+        Map, esriRequest, GraphicsLayer, Point, PictureMarkerSymbol, Graphic, PopupTemplate
+      ) {
+
+        // Configuramos el fichero esri_request para que use un proxy
+        // ya que mediante AJAX vamos a hacer una petición fuera de
+        // nuestro dominio (http://bit.ly/1nom026)
+
+        map = new Map("map", {
+          basemap: "gray",
+          center: [-3.674, 40.439],
+          zoom: 12
+        });
+
+        var capaGrafica = new GraphicsLayer(); 
+        map.addLayer(capaGrafica);
+        
+        var symbol = new PictureMarkerSymbol("http://esri-es.github.io/JavascriptAPI/img/icon.png", 12, 24); 
+
+        var template = new PopupTemplate({
+          title: "BusID {busId}",
+          description:"StopId: {stopId}<br>"+
+                      "busDistance: {busDistance}<br>"+
+                      "busPositionType: {busPositionType}<br>"+
+                      "busTimeLeft: {busTimeLeft}<br>"+
+                      "destination: {destination}<br>"+
+                      "isHead: {isHead}<br>"+
+                      "lineId: {lineId}<br>"
+        });
+
+        var requestHandle = esriRequest({
+          "url": "../data/json/stop_23.json"
+        });
+        requestHandle.then(requestSucceeded, requestFailed);
+
+        function requestSucceeded(response, io){
+          console.log(response);
+          response.arrives.forEach(function(item, i){
+            console.log("item=",item);
+
+            var loc = new Point(item.longitude, item.latitude); 
+            capaGrafica.add(new Graphic(loc, symbol,item,  template));
+          
+          
+          });
+        }
+        function requestFailed(error, io){
+          console.log(error);
+        }
+
+
+/*
+        var orangeRed = new Color([238, 69, 0, 0.5]);
+        var marker = new SimpleMarkerSymbol("solid", 10, null, orangeRed);
+
+        // Establecemos el símbolo que se utilizará para
+        // representar los datos
+        var renderer = new SimpleRenderer(marker);
+        csv.setRenderer(renderer);
+
+        // Y asociamos un pequeño modal con información extra.
+        var template = new InfoTemplate(
+          "Playa: ${name}",
+          "<iframe src='${pic_url}' frameborder='0' allowfullscreen style='width:100%'></iframe>",
+          "<a href='${thumb_url}' target='_blank'>Más info"
+        );
+        csv.setInfoTemplate(template);
+        */
+        //map.addLayer(csv);
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="map"></div>
+  </body>
+</html>

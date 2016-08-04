@@ -1,0 +1,4 @@
+config.py
+config.json
+node_modules
+*.pyc
