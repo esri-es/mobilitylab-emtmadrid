@@ -13,7 +13,7 @@ function loadYoutubeVideo(videoId){
 }
 function onYouTubeIframeAPIReady() {
   //console.log('videoId',videoId);
-  var videos = ['intro-mobilitylabs','intro-rabbitmq','petition-mybus-stop'];
+  var videos = ['intro-mobilitylabs','intro-rabbitmq','petition-mybus-stop','load-collection'];
   player = {};
 
   videos.forEach(function(elem, i){
@@ -21,7 +21,7 @@ function onYouTubeIframeAPIReady() {
     //JSo_JT4K5TI
     var videoId = document.getElementById(elem).getAttribute('data-video-id');
     player[elem] = new YT.Player(elem, {
-      height: '390',
+      height: '330',
       width: '100%',
       videoId: videoId,
       events: {

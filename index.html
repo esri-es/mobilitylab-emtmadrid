@@ -196,10 +196,105 @@
           </div>
         </article>
 
-         <article class="tab-section js-tab-section">
+        <article class="tab-section js-tab-section">
+          <div class="grid-container">
+            <div class="column-23">
+              <div class="column-11">
+                  <div id="load-collection" data-video-id="Eq26C-fzhbo"></div>
+              </div>
+            
+              <div class="column-12">
+                <span>
+                  <table class="table-striped table-blue video-index">
+                    <thead>
+                      <tr>
+                        <th>Minuto</th>
+                        <th>Descripción</th>
+                      </tr>
+                    </thead>
+                    <tbody data-video-id="load-collection">
+                      <tr>
+                        <td>00:00</td>
+                        <td>Qué vamos a ver y qué códigos vamos a usar</td>
+                      </tr>
+                      <tr>
+                        <td>00:29</td>
+                        <td>Requisitos previos para publicar colecciones</td>
+                      </tr>
+                      <tr>
+                        <td>01:53</td>
+                        <td>Juego de datos de ejemplo</td>
+                      </tr>
+                      <tr>
+                        <td>03:00</td>
+                        <td>Instalar las dependencias necesarias</td>
+                      </tr>
+                      <tr>
+                        <td>04:08</td>
+                        <td>Insertar datos en la colección</td>
+                      </tr>
+                      <tr>
+                        <td>08:48</td>
+                        <td>Dónde enviar las dudas</td>
+                      </tr>
+                      <tr>
+                        <td>09:22</td>
+                        <td>Comprobar si los datos se han cargado con éxito</td>
+                      </tr>
+                      <tr>
+                        <td>11:55</td>
+                        <td>Borrar datos de una colección</td>
+                      </tr>
+                      <tr>
+                        <td>12:18</td>
+                        <td>Cargar datos geolocalizados</td>
+                      </tr>
+                      <tr>
+                        <td>18:57</td>
+                        <td>Borrar datos de una colección (continuación)</td>
+                      </tr>
+                      <tr>
+                        <td>20:20</td>
+                        <td>Cargar datos geolocalizados (continuación)</td>
+                      </tr>
+                      <tr>
+                        <td>21:30</td>
+                        <td>Actualizar/reemplazar datos</td>
+                      </tr>
+                      <tr>
+                        <td>23:34</td>
+                        <td>Borrar datos</td>
+                      </tr>
+                      <tr>
+                        <td>24:23</td>
+                        <td>Despedida ;(</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </span>
+              </div>
+            </div>
+            <div class="column-23"> 
+                <p>
+                  En este video veremos utilizar los scripts <a href="https://github.com/esri-es/mobilitylab-emtmadrid">del repositorio</a> creado por Esri España para cargar datos en una colección.
+                </p>
+                <p>
+                  En mitad de las demostraciones parece que <strong>han habido algunos problemas con el servidor de colas</strong> pero a pesar de ello se ha seguido explicando el funcionamiento del código (intentaremos subir otro vídeo cuando vuelva a funcionar).
+                </p>
+                <p>
+                  Si alguno quiere hacer algo con datos espaciales y tiene dudas os recordamos que también podéis preguntar cualquier duda en la <a href="http://www.meetup.com/es-ES/Geo-Developers/">comunidad de GeoDevelopers</a>.
+                </p>
+                <p>Más información:</p>
+                <ul>
+                  <li>
+                    <a href="http://www.geodevelopers.org/academy" target="_blank">Charlas sobre geo-desarrollo</a>
+                  </li>
 
-          <p><i>Este vídeo estará disponible a lo largo del día de hoy</i></p>
+                </ul>
+            </div>
+          </div>
         </article>
+          
         
         <article class="tab-section js-tab-section">
           <div class="grid-container">
@@ -310,6 +405,21 @@
 #sponsors,
 #logo{
   max-height: 80px;
+}
+tbody{
+    max-height: 285px;
+    overflow: scroll !important;
+    display: block;
+}
+tr{display: table;}
+thead tr, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;/* even columns width , fix width of table too*/
+}
+tbody tr > td:first-child,
+thead tr > th:first-child{
+  width: 20%;
 }
 
 </style>
